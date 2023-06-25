@@ -48,6 +48,7 @@ public class Interviewer implements Serializable {
         this.isActive = isActive;
 
         data.add(this);
+
     }
 
     public static Interviewer getByEmail(String email) {

@@ -16,11 +16,12 @@ public class Menu {
     public void showMainMenu() {
         int option = 0;
 
-        while (option != 3 ) {
+        while (option != 4 ) {
             System.out.println("Seleccione la operacion a realizar:");
             System.out.println("1. Dar de alta un entrevistador");
             System.out.println("2. Consultar un entrevistador");
-            System.out.println("3. Salir");
+            System.out.println("3. Modificar un entrevistador");
+            System.out.println("4. Salir");
 
             option = sc.nextInt();
             sc.nextLine();
@@ -28,6 +29,7 @@ public class Menu {
             switch (option) {
                 case 1 -> addInterviewer();
                 case 2 -> searchInterviewer();
+                case 3 -> modifyInterviewer();
             }
         }
 
@@ -62,6 +64,31 @@ public class Menu {
             System.out.println(interviewer);
         } else {
             System.out.println("Entrevistador no encontrado");
+        }
+    }
+
+    public void modifyInterviewer(){
+        System.out.println("Ingrese el email del entrevistador a modificar:");
+        String email = sc.nextLine();
+
+        Interviewer interviewer = Interviewer.getByEmail(email);
+
+        if (interviewer == null) {
+            System.out.println("Entrevistador no encontrado:");
+        } else {
+            System.out.println(interviewer);
+            System.out.println("Presionar ENTER para conservar el valor actual de cada campo");
+            System.out.println("Ingrese el nuevo nombre del entrevistador:");
+            String name = sc.nextLine();
+            System.out.println("Ingrese el nuevo apellido del entrevistador: ");
+            String lastName = sc.nextLine();
+            System.out.println("Ingrese el nuevo email del entrevistador: ");
+            email = sc.nextLine();
+            System.out.println("El entrevistador se encuentra activo? (1=Si/2=No)");
+            Boolean isActive = sc.nextInt() == 1;
+            sc.nextLine();
+            interviewer.save(name, lastName, email, isActive);
+
         }
     }
 
