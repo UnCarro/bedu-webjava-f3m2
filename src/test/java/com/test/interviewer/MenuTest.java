@@ -46,7 +46,7 @@ public class MenuTest {
         final String interviewerName = "Interviewer Name";
         final String interviewerLastName = "Interviewer Lastname";
         final String interviewerEmail = "Interviewer Email";
-        final String addNewInterviewerCommand = "1 \n "+ interviewerName + " \n " + interviewerLastName + " \n " + interviewerEmail + " \n 1 \n 3 \n";
+        final String addNewInterviewerCommand = "1 \n "+ interviewerName + " \n " + interviewerLastName + " \n " + interviewerEmail + " \n 1 \n 4 \n";
         provideInput(addNewInterviewerCommand);
 
         Menu.main(new String[0]);
@@ -64,7 +64,7 @@ public class MenuTest {
         final String interviewerEmail = "interviewer@mail.com";
         final String addNewInterviewerCommand = "1 \n "+ interviewerName + " \n " + interviewerLastName + " \n " + interviewerEmail + " \n 1 \n";
         final String getInterviewerCommand = "2 \n " + interviewerEmail + "\n ";
-        final String exitCommand = "3 \n";
+        final String exitCommand = "4 \n";
         provideInput(addNewInterviewerCommand + getInterviewerCommand + exitCommand);
 
         Menu.main(new String[0]);
@@ -74,4 +74,34 @@ public class MenuTest {
         assertTrue(output.contains(interviewerLastName));
         assertTrue(output.contains(interviewerEmail));
     }
+
+    @Test
+    public void modifyInterviewer(){
+        final String interviewerName = "Capri";
+        final String interviewerLastName = "Cho";
+        final String interviewerEmail = "capri@mail.com";
+        final String addNewInterviewerCommand = "1 \n "+ interviewerName + " \n " + interviewerLastName + " \n " + interviewerEmail + " \n 1 \n";
+
+        final String interviewerNameModified = "Bono";
+        final String interviewerLastNameModified = "Chocolate";
+        final String interviewerEmailModified = "bono@mail.com";
+        final String modifyInterviewerCommand = "3 \n " + interviewerEmail + " \n " + interviewerNameModified + " \n " + interviewerLastNameModified + " \n " + interviewerEmailModified + " \n 2 \n";
+
+        final String getInterviewerCommand = "2 \n " + interviewerEmailModified + " \n ";
+
+        final String exitCommand = "4 \n";
+
+        provideInput(addNewInterviewerCommand
+                + modifyInterviewerCommand
+                + getInterviewerCommand
+                + exitCommand);
+
+        Menu.main(new String[0]);
+        final String output = getOutput();
+
+        assertTrue(output.contains(interviewerNameModified));
+        assertTrue(output.contains(interviewerLastNameModified));
+        assertTrue(output.contains(interviewerEmailModified));
+
+     }
 }
