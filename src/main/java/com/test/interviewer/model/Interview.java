@@ -1,4 +1,4 @@
 package com.test.interviewer.model;
 
-public class Interviewer {
+public class Interview {
 }

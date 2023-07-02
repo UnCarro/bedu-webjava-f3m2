@@ -1,6 +1,6 @@
 package com.test.interviewer;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Interviewer implements Serializable {
@@ -51,6 +51,17 @@ public class Interviewer implements Serializable {
 
     }
 
+    public void delete() throws Exception{
+        Interviewer interviewer = Interviewer.getByEmail(this.email);
+
+        if (interviewer != null) {
+            data.remove(this);
+            Interviewer.saveDataToFile();
+        }
+        else
+            throw new Exception("Interviewer not found");
+    }
+
     public static Interviewer getByEmail(String email) {
         for (Interviewer interviewer: data) {
             if (interviewer.email.equals(email))
@@ -60,6 +71,40 @@ public class Interviewer implements Serializable {
         return null;
     }
 
+    public static void saveDataToFile() {
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream("./interviewers");
+            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
+
+            outputStream.writeObject(Interviewer.data);
+
+            outputStream.close();
+            fileOutputStream.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    public static void loadDataFromFile() {
+        try {
+            FileInputStream fileInputStream = new FileInputStream("./interviewers");
+            ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
+
+            ArrayList<Interviewer> fileData = (ArrayList<Interviewer>) inputStream.readObject();
+
+            Interviewer.data.clear();
+            Interviewer.data.addAll(fileData);
+
+            inputStream.close();
+            fileInputStream.close();
+        } catch (Exception e) {
+            if (!e.getMessage().contains("No such file or directory"))
+                e.printStackTrace();
+        }
+    }
+
+
+
     @Override
     public String toString() {
         return "\nID: " + this.id +
@@ -68,4 +113,5 @@ public class Interviewer implements Serializable {
                 "\nEmail: " + this.email +
                 "\nIs Active: " + this.isActive + "\n";
     }
+
 }
