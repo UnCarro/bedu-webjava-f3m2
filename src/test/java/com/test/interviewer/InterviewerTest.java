@@ -2,9 +2,10 @@ package com.test.interviewer;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import com.test.interviewer.exceptions.InvalidEmailException;
+import com.test.interviewer.exceptions.InvalidNameException;
+import com.test.interviewer.exceptions.InvalidLastNameException;
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -28,6 +29,7 @@ public class InterviewerTest {
 
     @Test
     public void add() {
+        
         Interviewer interviewer = new Interviewer(
                 "Grecia",
                 "Sanchez",
@@ -35,7 +37,12 @@ public class InterviewerTest {
                 true
         );
 
-        interviewer.add();
+        try {
+            interviewer.add();    
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
 
         int expectedId = Interviewer.data.size();
         assertEquals(
@@ -43,6 +50,40 @@ public class InterviewerTest {
                 interviewer.id,
                 "Interviewer ID should be the new List's size"
         );
+    }
+
+    @Test
+    public void add_NotValidDataExceptions() {
+        // not valid email 
+        Interviewer interviewer = new Interviewer(
+                "Grecia",
+                "Sanchez",
+                "g@d.c",
+                true
+        );
+        
+        assertThrows(InvalidEmailException.class, () -> {interviewer.add();});
+
+        // not valid name
+        Interviewer interviewer2 = new Interviewer(
+                "Gr",
+                "Sanchez",
+                "gregre@crazydog.com",
+                true
+        );
+    
+        assertThrows(InvalidNameException.class, () -> {interviewer2.add();});
+
+        // not valid last name
+        Interviewer interviewer3 = new Interviewer(
+                "Grecia",
+                "Sa",
+                "gregre@crazydog.com",
+                true
+        );
+    
+        assertThrows(InvalidLastNameException.class, () -> {interviewer3.add();});
+
     }
 
 

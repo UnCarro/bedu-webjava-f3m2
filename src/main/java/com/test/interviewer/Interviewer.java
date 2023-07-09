@@ -1,7 +1,15 @@
 package com.test.interviewer;
-
-import java.io.*;
+import java.io.Serializable;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
+
+import com.test.interviewer.exceptions.InvalidEmailException;
+import com.test.interviewer.exceptions.InvalidLastNameException;
+import com.test.interviewer.exceptions.InvalidNameException;
 
 public class Interviewer implements Serializable {
     static ArrayList<Interviewer> data;
@@ -25,7 +33,16 @@ public class Interviewer implements Serializable {
         this.isActive = isActive;
     }
 
-    public Interviewer add() {
+    public Interviewer add() throws InvalidEmailException, InvalidNameException, InvalidLastNameException{
+        if (this.name.equals("") || this.name.length() < 3)
+        throw new InvalidNameException("Invalid name");
+
+        if (this.lastName.equals("") || this.lastName.length() < 3)
+        throw new InvalidLastNameException("Invalid last name");
+
+        if (this.email.equals("") || this.email.length() < 6)
+        throw new InvalidEmailException("Invalid email");
+
         data.add(this);
         return this;
     }
@@ -36,15 +53,13 @@ public class Interviewer implements Serializable {
             String email,
             Boolean isActive
     ) {
-        if (!name.equals(""))
-            this.name = name;
 
-        if (!lastName.equals(""))
-            this.lastName = lastName;
+        this.name = name;
 
-        if (!email.equals(""))
-            this.email = email;
+        this.lastName = lastName;
 
+        this.email = email;
+ 
         this.isActive = isActive;
 
         data.add(this);

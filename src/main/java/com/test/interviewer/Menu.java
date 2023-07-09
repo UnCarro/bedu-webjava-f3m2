@@ -50,7 +50,12 @@ public class Menu {
         sc.nextLine();
 
         Interviewer interviewer = new Interviewer(name, lastName, email, isActive);
-        interviewer.add();
+        try {
+            interviewer.add();    
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
 
         System.out.println(interviewer);
     }
