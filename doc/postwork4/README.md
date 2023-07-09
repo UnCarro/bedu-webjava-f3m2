@@ -36,7 +36,7 @@ Continuaremos con el desarrollo del software de entrevistadores y exploramos las
 
     Precondiciones:
 
-        El usuario cuenta con permisos de administrador
+        Ninguna
 
     Actor:
 
@@ -50,7 +50,7 @@ Continuaremos con el desarrollo del software de entrevistadores y exploramos las
 
     Salida:
 
-        id
+        objeto interviewer creado
 
     Flujo:
 
@@ -58,8 +58,8 @@ Continuaremos con el desarrollo del software de entrevistadores y exploramos las
             1.1 Validar el email
                 1.1.1 Si el email es invalido lanzar la excepción InvalidEmail
             1.2 Crear la nueva instacia de la clase Interviewer
-            1.4 Guardar la entidad
-            1.5 Responder con el id del nuevo entrevistador
+            1.4 Guardar el objeto
+            1.5 Responder con el objeto del nuevo entrevistador
         2. Enviar la respuesta
 2. En el archivo de pruebas añadan las pruebas correspondientes para validar que se cumplan los criterios de aceptación.
 3. Modifiquen el código de alta de entrevistadores de ser necesario.
