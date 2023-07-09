@@ -53,7 +53,7 @@ ________________________________________________________________________________
 
 ¿Qué tipo de datos son tus identificadores (id)? ¿Por qué elegieron ese tipo de dato?
 
-**Es tipo int, se pueden almacenar 2,147 millones de registros aproximadamente, de acuerdo con la naturaleza de la información parace ser una cantidad suficiente.**
+**Es tipo int, se pueden almacenar 2,147 millones de registros aproximadamente, de acuerdo con la naturaleza de la información parece ser una cantidad suficiente.**
 _________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 ¿Decidieron añadir pruebas? ¿Por qué?
