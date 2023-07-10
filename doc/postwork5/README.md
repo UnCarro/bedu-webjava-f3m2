@@ -27,7 +27,11 @@ Sigue estas instrucciones:
 
 ### Indicaciones generales
 
-¿Terminaste la actividad? Responde las siguientes preguntas:
+¿Terminaste la actividad?
+    
+- [Ver repositorio de la actividad](https://github.com/adavals/bedu-webjava-mockito)
+
+Responde las siguientes preguntas:
 
 ¿Cómo decidiste inyectar el mock?
     
@@ -49,6 +53,6 @@ ________________________________________________________________________________
     En cambio, el framework Mockito crea el objeto mock dinámicamente, de acuerdo a la clase que se le indica y automatiza una gran parte de las tareas facilitando la definición de comportamientos en los objetos mock.
 _________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
-[Ir al repositorio de este postwork](https://github.com/adavals/bedu-webjava-mockito)
+
 
 
