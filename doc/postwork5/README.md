@@ -29,7 +29,7 @@ Sigue estas instrucciones:
 
 ¿Terminaste la actividad?
     
-- [Ver repositorio de la actividad](https://github.com/adavals/bedu-webjava-mockito)
+🚀 [Ver repositorio de la actividad](https://github.com/adavals/bedu-webjava-mockito)
 
 Responde las siguientes preguntas:
 
