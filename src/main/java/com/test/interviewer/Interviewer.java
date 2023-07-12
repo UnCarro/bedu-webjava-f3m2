@@ -12,7 +12,7 @@ import com.test.interviewer.exceptions.InvalidLastNameException;
 import com.test.interviewer.exceptions.InvalidNameException;
 
 public class Interviewer implements Serializable {
-    static ArrayList<Interviewer> data;
+    public static ArrayList<Interviewer> data;
 
     int id;
     String name;
@@ -26,6 +26,9 @@ public class Interviewer implements Serializable {
             String email,
             Boolean isActive
     ) {
+        if (data==null)
+            data = new ArrayList<>();
+
         this.id = data.size() + 1;
         this.name = name;
         this.lastName = lastName;
@@ -35,13 +38,13 @@ public class Interviewer implements Serializable {
 
     public Interviewer add() throws InvalidEmailException, InvalidNameException, InvalidLastNameException{
         if (this.name.equals("") || this.name.length() < 3)
-        throw new InvalidNameException("Invalid name");
+            throw new InvalidNameException("Invalid name");
 
         if (this.lastName.equals("") || this.lastName.length() < 3)
-        throw new InvalidLastNameException("Invalid last name");
+            throw new InvalidLastNameException("Invalid last name");
 
         if (this.email.equals("") || this.email.length() < 6)
-        throw new InvalidEmailException("Invalid email");
+            throw new InvalidEmailException("Invalid email");
 
         data.add(this);
         return this;
@@ -118,8 +121,6 @@ public class Interviewer implements Serializable {
         }
     }
 
-
-
     @Override
     public String toString() {
         return "\nID: " + this.id +
@@ -129,4 +130,27 @@ public class Interviewer implements Serializable {
                 "\nIs Active: " + this.isActive + "\n";
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id=id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
 }
