@@ -12,6 +12,7 @@ import java.net.URI;
 @RequestMapping("/")
 public class InterviewerController {
     @PostMapping("add-interviewer")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> createInterviewer(@RequestBody Interviewer dataToAdd) {
 
         Interviewer interviewer = new Interviewer(dataToAdd.getName(),
