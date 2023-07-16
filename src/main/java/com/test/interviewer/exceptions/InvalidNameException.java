@@ -1,6 +1,6 @@
 package com.test.interviewer.exceptions;
 
-public class InvalidNameException extends Exception {
+public class InvalidNameException extends RuntimeException {
 
     public InvalidNameException() {
         super();  // Call the superclass constructor

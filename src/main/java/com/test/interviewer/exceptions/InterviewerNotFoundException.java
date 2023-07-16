@@ -1,6 +1,6 @@
 package com.test.interviewer.exceptions;
 
-public class InterviewerNotFoundException extends Exception {
+public class InterviewerNotFoundException extends RuntimeException {
     public InterviewerNotFoundException() {
         super();  // Call the superclass constructor
     }

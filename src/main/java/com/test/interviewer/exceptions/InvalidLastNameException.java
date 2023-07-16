@@ -1,6 +1,6 @@
 package com.test.interviewer.exceptions;
 
-public class InvalidLastNameException extends Exception {
+public class InvalidLastNameException extends RuntimeException {
     public InvalidLastNameException() {
         super();  // Call the superclass constructor
     }

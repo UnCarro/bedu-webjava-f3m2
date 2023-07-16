@@ -1,6 +1,6 @@
 package com.test.interviewer.exceptions;
 
-public class InvalidEmailException extends Exception {
+public class InvalidEmailException extends RuntimeException {
 
     public InvalidEmailException() {
         super();  // Call the superclass constructor

@@ -15,11 +15,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(InterviewerController.class)
 class InterviewerControllerTest {
-    @SuppressWarnings("unused")
+    
     @Autowired
     private MockMvc mockMvc;
 
-    @SuppressWarnings("unused")
+    
     @MockBean
     private Interviewer mkInterviewer;
     @Test
@@ -53,8 +53,11 @@ class InterviewerControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(interviewerParameter)))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
-                .andExpect(content().string("Invalid name"));
+                //.andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
+                //.andExpect(content().string("Invalid name"));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("message", is("Invalid name")));
+ 
     }
 
 }
