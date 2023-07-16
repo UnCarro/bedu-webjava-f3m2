@@ -57,10 +57,7 @@ subprojects {
 sonar {
     properties {
         property 'sonar.host.url', 'http://localhost:9000' // Replace with the URL of your SonarQube servg
-        //property 'sonar.token', 'squ_6bb7ef378215fd20335d7715a97ff0bbf6be583f' // Replace with your SonarQube authentication token
-        property 'sonar.token', 'sqp_e9ad2e6a13fb2055be6c260a69e38ca602e20273'
-        property 'sonar.projectKey', 'postwork'
-        property 'sonar.projectName', 'postwork'
+        
         property 'sonar.jacoco.reportPaths', 'build/reports/jacoco/test'
     }
 }

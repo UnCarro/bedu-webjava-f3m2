@@ -5,6 +5,7 @@ import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.util.List;
 import java.util.ArrayList;
 
 import com.test.interviewer.exceptions.InvalidEmailException;
@@ -12,7 +13,7 @@ import com.test.interviewer.exceptions.InvalidLastNameException;
 import com.test.interviewer.exceptions.InvalidNameException;
 
 public class Interviewer implements Serializable {
-    public static ArrayList<Interviewer> data;
+    public static List<Interviewer> data;
 
     int id;
     String name;
@@ -90,31 +91,28 @@ public class Interviewer implements Serializable {
     }
 
     public static void saveDataToFile() {
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream("./interviewers");
-            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
+        try (   FileOutputStream fileOutputStream = new FileOutputStream("./interviewers");
+                ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream)
+            ) {
 
             outputStream.writeObject(Interviewer.data);
 
-            outputStream.close();
-            fileOutputStream.close();
         } catch (IOException ioe) {
             ioe.printStackTrace();
-        }
+        } 
     }
 
     public static void loadDataFromFile() {
-        try {
-            FileInputStream fileInputStream = new FileInputStream("./interviewers");
-            ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
-
+        try (   FileInputStream fileInputStream = new FileInputStream("./interviewers");
+                ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
+        )   {
+            // Suppressing the unchecked cast warning because is the only data and data file defined in the app
+            @SuppressWarnings("unchecked") 
             ArrayList<Interviewer> fileData = (ArrayList<Interviewer>) inputStream.readObject();
 
             Interviewer.data.clear();
             Interviewer.data.addAll(fileData);
 
-            inputStream.close();
-            fileInputStream.close();
         } catch (Exception e) {
             if (!e.getMessage().contains("No such file or directory"))
                 e.printStackTrace();
