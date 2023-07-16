@@ -48,15 +48,19 @@ public class Candidate {
     }
 
     public void add() {
+        // add code in the next release
 
     }
     public void save(){
+        // add code in the next release
 
     }
     public void delete(){
+        // add code in the next release
 
     }
     public void getByEmail(){
+        // add code in the next release
 
     }
 

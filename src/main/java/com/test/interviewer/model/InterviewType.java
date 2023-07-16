@@ -38,12 +38,15 @@ public class InterviewType {
         this.description = description;
     }
     public void add() {
+        // add code in the next release
 
     }
     public void save(){
+        // add code in the next release
 
     }
     public void delete(){
+        // add code in the next release
 
     }
 

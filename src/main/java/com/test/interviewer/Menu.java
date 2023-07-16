@@ -7,8 +7,7 @@ public class Menu {
 
     public Menu() {
         sc = new Scanner(System.in);
-        //Interviewer.data = new ArrayList<>();
-
+        
         showMainMenu();
     }
 

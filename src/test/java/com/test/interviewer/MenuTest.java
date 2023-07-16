@@ -98,6 +98,7 @@ public class MenuTest {
 
         Menu.main(new String[0]);
         final String output = getOutput();
+        
 
         assertTrue(output.contains(interviewerNameModified));
         assertTrue(output.contains(interviewerLastNameModified));
