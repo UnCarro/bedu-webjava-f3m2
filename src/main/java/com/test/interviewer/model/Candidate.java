@@ -1,6 +1,5 @@
 package com.test.interviewer.model;
 
-import com.test.interviewer.Interviewer;
 
 public class Candidate {
     private int id;

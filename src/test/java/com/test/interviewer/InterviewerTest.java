@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 import com.test.interviewer.exceptions.InvalidEmailException;
 import com.test.interviewer.exceptions.InvalidNameException;
 import com.test.interviewer.exceptions.InvalidLastNameException;
-import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
-
 
 public class InterviewerTest {
     static String existingInterviewerName = "Capri";
@@ -16,10 +14,10 @@ public class InterviewerTest {
 
     @BeforeEach
     public void setUp() {
-        Interviewer.data = new ArrayList<>();
+        //Interviewer.data = new ArrayList<>();
 
-        // We insert a user for testing delete and save
-        Interviewer.data.add(new Interviewer(
+        // We insert a interviewer for testing delete and save
+        Interviewer.addData(new Interviewer(
                 existingInterviewerName,
                 existingInterviewerLastName,
                 existingInterviewerEmail,
@@ -44,7 +42,8 @@ public class InterviewerTest {
         }
         
 
-        int expectedId = Interviewer.data.size();
+        //int expectedId = Interviewer.data.size();
+        int expectedId = Interviewer.getDataSize();
         assertEquals(
                 expectedId,
                 interviewer.id,
@@ -115,9 +114,9 @@ public class InterviewerTest {
 
     @Test
     public void delete() {
-        Interviewer existingInterviewer = Interviewer.data.get(0);
+        Interviewer existingInterviewer = Interviewer.getDataByPos(0);
 
-        int expectedSize = Interviewer.data.size() - 1;
+        int expectedSize = Interviewer.getDataSize() - 1;
 
         try {
             existingInterviewer.delete();
@@ -125,7 +124,7 @@ public class InterviewerTest {
             fail("Unexpected Exception received: " + e.getMessage());
         }
 
-        int actualSize = Interviewer.data.size();
+        int actualSize = Interviewer.getDataSize();
 
         assertEquals(
                 expectedSize,

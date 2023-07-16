@@ -1,6 +1,5 @@
 package com.test.interviewer;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -8,7 +7,7 @@ public class Menu {
 
     public Menu() {
         sc = new Scanner(System.in);
-        Interviewer.data = new ArrayList<>();
+        //Interviewer.data = new ArrayList<>();
 
         showMainMenu();
     }
@@ -32,6 +31,7 @@ public class Menu {
                 case 2 -> searchInterviewer();
                 case 3 -> modifyInterviewer();
                 case 4 -> deleteInterviewer();
+                default -> System.out.println("Indica un número del 1 al 5");
             }
         }
 

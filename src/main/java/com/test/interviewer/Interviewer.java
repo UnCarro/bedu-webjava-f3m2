@@ -8,12 +8,13 @@ import java.io.ObjectInputStream;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.test.interviewer.exceptions.InterviewerNotFoundException;
 import com.test.interviewer.exceptions.InvalidEmailException;
 import com.test.interviewer.exceptions.InvalidLastNameException;
 import com.test.interviewer.exceptions.InvalidNameException;
 
 public class Interviewer implements Serializable {
-    public static List<Interviewer> data;
+    private static List<Interviewer> data = new ArrayList<>();
 
     int id;
     String name;
@@ -21,15 +22,17 @@ public class Interviewer implements Serializable {
     String email;
     Boolean isActive;
 
+    public Interviewer(){
+
+    }
+
     public Interviewer(
             String name,
             String lastName,
             String email,
             Boolean isActive
     ) {
-        if (data==null)
-            data = new ArrayList<>();
-
+ 
         this.id = data.size() + 1;
         this.name = name;
         this.lastName = lastName;
@@ -70,7 +73,7 @@ public class Interviewer implements Serializable {
 
     }
 
-    public void delete() throws Exception{
+    public void delete() throws InterviewerNotFoundException{
         Interviewer interviewer = Interviewer.getByEmail(this.email);
 
         if (interviewer != null) {
@@ -78,7 +81,7 @@ public class Interviewer implements Serializable {
             Interviewer.saveDataToFile();
         }
         else
-            throw new Exception("Interviewer not found");
+            throw new InterviewerNotFoundException("Interviewer not found");
     }
 
     public static Interviewer getByEmail(String email) {
@@ -150,5 +153,19 @@ public class Interviewer implements Serializable {
 
     public Boolean getIsActive() {
         return isActive;
+    }
+
+    public static void addData(Interviewer interviewer){
+        data.add(interviewer);
+    }
+    public static int getDataSize(){
+        return data.size();
+    }
+    public static Interviewer getDataByPos(int pos){
+        return Interviewer.data.get(pos);
+
+    }
+    public static void emptyData(){
+        data = new ArrayList<>();
     }
 }

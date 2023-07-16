@@ -8,14 +8,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.ArrayList;
-
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 
 @WebMvcTest(InterviewerController.class)
 class InterviewerControllerTest {
@@ -28,7 +24,7 @@ class InterviewerControllerTest {
     private Interviewer mkInterviewer;
     @Test
     void createInterviewer() throws Exception {
-        Interviewer.data = new ArrayList<>();
+        Interviewer.emptyData();
         Interviewer interviewerParameter = new Interviewer("capri", "martinez", "capri@crazydog.com", true);
 
         given(mkInterviewer.add()).willReturn(interviewerParameter);
@@ -48,7 +44,7 @@ class InterviewerControllerTest {
 
     @Test
     void createInterviewerException() throws Exception {
-        Interviewer.data = new ArrayList<>();
+        Interviewer.emptyData();
         Interviewer interviewerParameter = new Interviewer("", "martinez", "capri@crazydog.com", true);
 
         given(mkInterviewer.add()).willReturn(interviewerParameter);
