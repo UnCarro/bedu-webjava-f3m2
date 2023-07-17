@@ -2,20 +2,20 @@ package com.test.interviewer;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.test.interviewer.exceptions.InterviewerNotFoundException;
 import com.test.interviewer.exceptions.InvalidEmailException;
 import com.test.interviewer.exceptions.InvalidNameException;
 import com.test.interviewer.exceptions.InvalidLastNameException;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class InterviewerTest {
+class InterviewerTest {
     static String existingInterviewerName = "Capri";
     static String existingInterviewerLastName = "Cho";
     static String existingInterviewerEmail =  "capri.cho@dogmail.com";
 
     @BeforeEach
-    public void setUp() {
-        //Interviewer.data = new ArrayList<>();
-
+    void setUp() {
         // We insert a interviewer for testing delete and save
         Interviewer.addData(new Interviewer(
                 existingInterviewerName,
@@ -26,7 +26,7 @@ public class InterviewerTest {
     }
 
     @Test
-    public void add() {
+    void add() {
         
         Interviewer interviewer = new Interviewer(
                 "Grecia",
@@ -52,7 +52,7 @@ public class InterviewerTest {
     }
 
     @Test
-    public void add_NotValidDataExceptions() {
+    void add_NotValidDataExceptions() {
         // not valid email 
         Interviewer interviewer = new Interviewer(
                 "Grecia",
@@ -87,7 +87,7 @@ public class InterviewerTest {
 
 
     @Test
-    public void getByEmail() {
+    void getByEmail() {
         Interviewer result = Interviewer.getByEmail(existingInterviewerEmail);
 
         assertNotNull(result, "Interviewer should be found");
@@ -104,16 +104,15 @@ public class InterviewerTest {
     }
 
     @Test
-    public void getByNonExistingEmail() {
+    void getByNonExistingEmail() {
         String nonExistingEmail = "somebody@email.com";
-
-        Interviewer result = Interviewer.getByEmail(nonExistingEmail);
-
-        assertNull(result, "Interviewer should not be found");
+        
+        //assertThrows(InterviewerNotFoundException.class, () -> {interviewer.getByEmail(nonExistingEmail)});
+        assertThrows(InterviewerNotFoundException.class, () -> {Interviewer.getByEmail(nonExistingEmail);}, "Interviewer should not be found");
     }
 
     @Test
-    public void delete() {
+    void delete() {
         Interviewer existingInterviewer = Interviewer.getDataByPos(0);
 
         int expectedSize = Interviewer.getDataSize() - 1;

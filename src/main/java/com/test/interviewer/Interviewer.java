@@ -74,23 +74,17 @@ public class Interviewer implements Serializable {
     }
 
     public void delete() throws InterviewerNotFoundException{
-        Interviewer interviewer = Interviewer.getByEmail(this.email);
-
-        if (interviewer != null) {
-            data.remove(this);
-            Interviewer.saveDataToFile();
-        }
-        else
-            throw new InterviewerNotFoundException("Interviewer not found");
+        getByEmail(this.email);
+        data.remove(this);
+        Interviewer.saveDataToFile();
     }
 
-    public static Interviewer getByEmail(String email) {
+    public static Interviewer getByEmail(String email) throws InterviewerNotFoundException{
         for (Interviewer interviewer: data) {
             if (interviewer.email.equals(email))
                 return interviewer;
         }
-
-        return null;
+        throw new InterviewerNotFoundException("Interviewer not found");
     }
 
     public static void saveDataToFile() {

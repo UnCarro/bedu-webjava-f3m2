@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class InterviewerControllerIntegrationTest {
+class InterviewerControllerIntegrationTest {
     private final TestRestTemplate restTemplate;
 
     @Autowired

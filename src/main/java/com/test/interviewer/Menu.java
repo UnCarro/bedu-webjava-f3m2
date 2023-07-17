@@ -62,15 +62,16 @@ public class Menu {
     public void searchInterviewer() {
         System.out.println("Ingrese el email del entrevistador a consultar:");
         String email = sc.nextLine();
-
-        Interviewer interviewer = Interviewer.getByEmail(email);
-
-        if (interviewer != null) {
+        try {
+            Interviewer interviewer = Interviewer.getByEmail(email);
             System.out.println("Entrevistador encontrado:");
             System.out.println(interviewer);
-        } else {
+
+        } catch (Exception e){
             System.out.println("Entrevistador no encontrado");
+
         }
+
     }
 
     public void modifyInterviewer(){
