@@ -1,12 +1,10 @@
 package com.test.interviewer.model;
 
-
 public class Discipline {
     private int id;
     private String name;
     private String slug;
-
-    private String description;
+    private String descriptionDiscipline;
 
     public int getId() {
         return id;
@@ -32,25 +30,20 @@ public class Discipline {
         this.slug = slug;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptionDiscipline() {
+        return descriptionDiscipline;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescriptionDiscipline(String description) {
+        this.descriptionDiscipline = description;
     }
     public void add() {
         // add code in the next release
-
     }
     public void save(){
         // add code in the next release
-
     }
     public void delete(){
         // add code in the next release
-
     }
-
-
 }

@@ -43,7 +43,7 @@ class InterviewerControllerTest {
     }
 
     @Test
-    void createInterviewerException() throws Exception {
+    void createInterviewerInvalidNameException() throws Exception {
         Interviewer.emptyData();
         Interviewer interviewerParameter = new Interviewer("", "martinez", "capri@crazydog.com", true);
 
@@ -53,11 +53,42 @@ class InterviewerControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(interviewerParameter)))
                 .andExpect(status().isBadRequest())
-                //.andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
-                //.andExpect(content().string("Invalid name"));
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("message", is("Invalid name")));
  
     }
+
+    @Test
+    void createInterviewerInvalidLastNameException() throws Exception {
+        Interviewer.emptyData();
+        Interviewer interviewerParameter = new Interviewer("Capri", "", "capri@crazydog.com", true);
+
+        given(mkInterviewer.add()).willReturn(interviewerParameter);
+
+        mockMvc.perform(post("/add-interviewer")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(interviewerParameter)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("message", is("Invalid last name")));
+ 
+    }
+
+    @Test
+    void createInterviewerInvalidEmailException() throws Exception {
+        Interviewer.emptyData();
+        Interviewer interviewerParameter = new Interviewer("capri", "martinez", "", true);
+
+        given(mkInterviewer.add()).willReturn(interviewerParameter);
+
+        mockMvc.perform(post("/add-interviewer")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(interviewerParameter)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("message", is("Invalid email")));
+ 
+    }
+
 
 }
