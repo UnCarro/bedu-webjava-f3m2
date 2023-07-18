@@ -41,7 +41,7 @@ jacocoTestReport {
 test {
     useJUnitPlatform()
 
-    systemProperty 'junit.jupiter.execution.parallel.enabled', 'false'
+    systemProperty 'junit.jupiter.execution.parallel.enabled', 'true'
 
     // Set the system property for the testing environment (optional)
     systemProperty 'spring.profiles.active', 'test'
