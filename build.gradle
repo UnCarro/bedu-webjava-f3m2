@@ -25,6 +25,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    implementation 'org.seleniumhq.selenium:selenium-support:3.141.59'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
@@ -38,6 +40,7 @@ jacocoTestReport {
 
 
 test {
+    exclude '**/*InterviewerControllerBrowserTest.class'
     useJUnitPlatform()
 
     systemProperty 'junit.jupiter.execution.parallel.enabled', 'true'
