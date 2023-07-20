@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.junit.jupiter.api.Assertions;
 
 public class InterviewerControllerBrowserTest {
@@ -45,6 +47,7 @@ public class InterviewerControllerBrowserTest {
         }
 
         driver = new ChromeDriver(options);
+        
     }
 
     @AfterAll
@@ -62,6 +65,10 @@ public class InterviewerControllerBrowserTest {
         driver.findElement(By.id("interviewerLastName")).sendKeys("martinez");
         driver.findElement(By.id("interviewerEmail")).sendKeys("capri@crazydog.com");
         driver.findElement(By.tagName("button")).click();
+               // Use WebDriverWait to wait for the element to be present
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("success")));
+
         String result = driver.findElement(By.className("success")).getText();
         Assertions.assertEquals(result,"Success!");
     }
@@ -69,12 +76,15 @@ public class InterviewerControllerBrowserTest {
     @Test
     @DisplayName("Interviewer add Error")
     public void interviewerAddError(){
+        WebDriverWait wait = new WebDriverWait(driver, 10);
 
         driver.get("http://localhost:5173");
         driver.findElement(By.id("interviewerName")).sendKeys("");
         driver.findElement(By.id("interviewerLastName")).sendKeys("martinez");
         driver.findElement(By.id("interviewerEmail")).sendKeys("capri@crazydog.com");
         driver.findElement(By.tagName("button")).click();
+        
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("error")));
         String result1 = driver.findElement(By.className("error")).getText();
 
         driver.get("http://localhost:5173");
@@ -82,6 +92,7 @@ public class InterviewerControllerBrowserTest {
         driver.findElement(By.id("interviewerLastName")).sendKeys("");
         driver.findElement(By.id("interviewerEmail")).sendKeys("capri@crazydog.com");
         driver.findElement(By.tagName("button")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("error")));
         String result2 = driver.findElement(By.className("error")).getText();
 
         driver.get("http://localhost:5173");
@@ -89,6 +100,7 @@ public class InterviewerControllerBrowserTest {
         driver.findElement(By.id("interviewerLastName")).sendKeys("martinez");
         driver.findElement(By.id("interviewerEmail")).sendKeys("c@");
         driver.findElement(By.tagName("button")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("error")));
         String result3 = driver.findElement(By.className("error")).getText();
 
         Assertions.assertTrue(result1.contains("Invalid name"));

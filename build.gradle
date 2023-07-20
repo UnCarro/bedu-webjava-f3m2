@@ -40,7 +40,7 @@ jacocoTestReport {
 
 
 test {
-    exclude '**/*InterviewerControllerBrowserTest.class'
+    //exclude '**/*InterviewerControllerBrowserTest.class'
     useJUnitPlatform()
 
     systemProperty 'junit.jupiter.execution.parallel.enabled', 'true'
