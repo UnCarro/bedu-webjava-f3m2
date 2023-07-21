@@ -59,7 +59,7 @@ public class InterviewerControllerBrowserTest {
 
     @Test
     @DisplayName("Interviewer add success")
-    public void interviewerAddSuccess(){
+    void interviewerAddSuccess(){
         driver.get("http://localhost:5173");
         driver.findElement(By.id("interviewerName")).sendKeys("capri");
         driver.findElement(By.id("interviewerLastName")).sendKeys("martinez");
@@ -70,12 +70,12 @@ public class InterviewerControllerBrowserTest {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("success")));
 
         String result = driver.findElement(By.className("success")).getText();
-        Assertions.assertEquals(result,"Success!");
+        Assertions.assertEquals("Success!", result);
     }
 
     @Test
     @DisplayName("Interviewer add Error")
-    public void interviewerAddError(){
+    void interviewerAddError(){
         WebDriverWait wait = new WebDriverWait(driver, 10);
 
         driver.get("http://localhost:5173");
