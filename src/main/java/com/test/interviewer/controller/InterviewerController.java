@@ -9,7 +9,7 @@ import java.net.URI;
 @RequestMapping("/")
 public class InterviewerController {
     @PostMapping("add-interviewer")
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<Interviewer> createInterviewer(@RequestBody Interviewer dataToAdd) {
 
         Interviewer interviewer = new Interviewer(dataToAdd.getName(),
